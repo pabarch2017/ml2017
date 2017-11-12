@@ -24,5 +24,10 @@
     "istanbul": "0.4.5",
     "mocha": "4.0.1",
     "sinon": "4.1.2"
+  },
+  "dependencies": {
+    "config": "1.28.1",
+    "request": "2.83.0",
+    "request-promise-native": "1.0.5"
   }
 }
