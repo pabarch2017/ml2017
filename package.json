@@ -1,0 +1,28 @@
+{
+  "name": "ml2017",
+  "version": "1.0.0",
+  "description": "Ejercicio práctico para ML",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js",
+    "test": "test",
+    "linter": "eslint ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/pabarch2017/ml2017.git"
+  },
+  "author": "Pablo Archenti <pabloarchenti@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/pabarch2017/ml2017/issues"
+  },
+  "homepage": "https://github.com/pabarch2017/ml2017#readme",
+  "devDependencies": {
+    "chai": "4.1.2",
+    "eslint": "4.11.0",
+    "istanbul": "0.4.5",
+    "mocha": "4.0.1",
+    "sinon": "4.1.2"
+  }
+}
