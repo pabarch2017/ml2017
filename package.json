@@ -26,6 +26,8 @@
     "sinon": "4.1.2"
   },
   "dependencies": {
+    "cacheman": "2.2.1",
+    "cacheman-file": "0.2.1",
     "config": "1.28.1",
     "request": "2.83.0",
     "request-promise-native": "1.0.5"
