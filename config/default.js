@@ -9,5 +9,13 @@ module.exports = {
         gzip: true,
         simple: false,
         resolveWithFullResponse: true
+    },
+    httpCache: {
+        ttl: 86400 * 10
+    },
+    logging: {
+        level: 'debug',
+        colorize: true,
+        timestamp: true
     }
 };

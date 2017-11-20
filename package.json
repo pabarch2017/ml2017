@@ -30,7 +30,9 @@
     "cacheman-file": "0.2.1",
     "config": "1.28.1",
     "electrolyte": "0.5.0",
+    "moment": "2.19.2",
     "request": "2.83.0",
-    "request-promise-native": "1.0.5"
+    "request-promise-native": "1.0.5",
+    "winston": "2.4.0"
   }
 }
