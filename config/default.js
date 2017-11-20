@@ -5,12 +5,13 @@ module.exports = {
         baseUrl: 'https://api.mercadolibre.com',
         forever: true,
         json: true,
-        timeout: 5000,
+        timeout: 10000,
         gzip: true,
         simple: false,
         resolveWithFullResponse: true
     },
     httpCache: {
+        name: 'http',
         ttl: 86400 * 10
     },
     logging: {
