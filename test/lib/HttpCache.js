@@ -3,7 +3,7 @@
 
 const should = require('chai').should();
 
-const HttpCache = require('../../lib/HttpCache');
+const HttpCache = require('../../lib/http/HttpCache');
 const moment = require('moment');
 
 describe('HttpCache', () => {
@@ -31,12 +31,12 @@ describe('HttpCache', () => {
         });
 
         it('should return "maxAge" and "revalidate" properties', () => {
-            cache.extractDurationsFromCacheControl('public max-age=86400, stale-while-revalidate=1000')
+            cache.extractDurationsFromCacheControl('public max-age=86400,stale-while-revalidate=1000')
                 .should.deep.equal({ maxAge: 86400, revalidate: 1000 });
         });
 
         it('should return "maxAge", "revalidate" and ifError properties', () => {
-            cache.extractDurationsFromCacheControl('public max-age=86400, stale-while-revalidate=1000, stale-if-error=500')
+            cache.extractDurationsFromCacheControl('public max-age=86400, stale-while-revalidate=1000,stale-if-error=500')
                 .should.deep.equal({ maxAge: 86400, revalidate: 1000, ifError: 500 });
         });
     });
@@ -48,13 +48,13 @@ describe('HttpCache', () => {
             cache = new HttpCache();
         });
 
-        it('should return null when no flags are set', () => {
+        it('should return empty object when no flags are set', () => {
             const data = {
                 createdAt: moment(),
                 durations: {}
             };
 
-            should.not.exist(cache.calculateFlags(data));
+            cache.calculateFlags(data).should.deep.equal({});
         });
 
         it('should set flag "valid" when "max-age" is valid', () => {

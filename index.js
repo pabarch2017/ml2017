@@ -1,16 +1,17 @@
 'use strict';
 
 const ioc = require('./lib/ioc');
+const log = require('winston');
 
-ioc.create('apiClient')
-    .then(apiClient => {
-        return apiClient.get('/sites/MLA/payment_methods/visa', { attributes: ['id'] });
+ioc.create('paymentMethodService')
+    .then(productService => {
+        return productService.find();
     })
-    .then(response => {
-        console.log(response);
+    .then(product => {
+        log.info(product);
     })
-    .catch(e => {
-        console.log(e);
+    .catch(err => {
+        log.error(err);
     });
 
 
