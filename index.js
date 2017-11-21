@@ -3,9 +3,9 @@
 const ioc = require('./lib/ioc');
 const log = require('winston');
 
-ioc.create('paymentMethodService')
+ioc.create('productService')
     .then(productService => {
-        return productService.find();
+        return productService.findById('MLA608969693');
     })
     .then(product => {
         log.info(product);
