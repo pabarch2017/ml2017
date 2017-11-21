@@ -5,7 +5,7 @@ module.exports = {
         baseUrl: 'https://api.mercadolibre.com',
         forever: true,
         json: true,
-        timeout: 10000,
+        timeout: 15000,
         gzip: true,
         simple: false,
         resolveWithFullResponse: true

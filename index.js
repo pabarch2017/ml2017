@@ -3,12 +3,12 @@
 const ioc = require('./lib/ioc');
 const log = require('winston');
 
-ioc.create('productService')
-    .then(productService => {
-        return productService.findById('MLA608969693');
+ioc.create('paymentMethodService')
+    .then(paymentMethodService => {
+        return paymentMethodService.find();
     })
     .then(product => {
-        log.info(product);
+        log.info(product.toString());
     })
     .catch(err => {
         log.error(err);
