@@ -26,6 +26,7 @@ ioc.create('productService')
                 }
 
                 log.info(`Writing results to file "${FILE}"`);
+                log.info(`File content:\n${output}`);
                 fs.writeFileSync(FILE, output);
             });
     })
