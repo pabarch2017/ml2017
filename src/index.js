@@ -1,6 +1,6 @@
 'use strict';
 
-const ioc = require('./lib/ioc');
+const ioc = require('./ioc');
 const fs = require('fs');
 const log = require('winston');
 

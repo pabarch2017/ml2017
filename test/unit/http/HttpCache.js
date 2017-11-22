@@ -3,7 +3,7 @@
 
 const should = require('chai').should();
 
-const HttpCache = require('../../lib/http/HttpCache');
+const HttpCache = require('../../../src/http/HttpCache');
 const moment = require('moment');
 
 describe('HttpCache', () => {

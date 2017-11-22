@@ -4,10 +4,10 @@
   "description": "Ejercicio práctico para ML",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js",
-    "test": "mocha --reporter=spec --recursive",
-    "test:coverage": "istanbul cover _mocha -- --reporter=dot --recursive",
-    "linter": "eslint index.js ./lib ./test ./config"
+    "start": "node ./src/index.js",
+    "test": "mocha --reporter=spec --recursive  test/unit",
+    "test:coverage": "istanbul cover _mocha -- --reporter=dot --recursive test/unit",
+    "linter": "eslint index.js ./src ./test ./config"
   },
   "repository": {
     "type": "git",
