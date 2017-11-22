@@ -13,7 +13,7 @@ ioc.create('productService')
         return productService.findById(productId);
     })
     .then(product => {
-        ioc.create('paymentMethodService')
+        return ioc.create('paymentMethodService')
             .then(paymentMethodService => {
                 log.info('Finding payment Methods...');
                 return paymentMethodService.find();
