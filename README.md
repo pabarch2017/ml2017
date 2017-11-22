@@ -3,15 +3,15 @@
 ## Dependencias
 - Node v6.12
 
-##Ejecución
+## Ejecución
 
-####NPM
+#### NPM
 
 ```bash
 $ npm start <Id producto>
 ```
 
-####Docker
+#### Docker
 
 ````bash
 $ docker build --tag="ejpabarch" . 
@@ -19,7 +19,7 @@ $ docker run -ti ejpabarch npm start <Id producto>
 $ docker run -ti --rm ejpabarch cat output.txt
 ````
 
-##Características generales
+## Características generales
 
 - Configuración por ambiente.
 - ESLint (npm run linter).
@@ -31,7 +31,7 @@ $ docker run -ti --rm ejpabarch cat output.txt
 - Nivel debug logging.
 
 
-##Consideraciones de performance
+## Consideraciones de performance
 
 - Cliente API: Solicitud de atributos mediante parámetro "attributes".
 - Cache cliente API: Soporte header Cache-Control (max-age, stale-while-revalidate, stale-if-error).
