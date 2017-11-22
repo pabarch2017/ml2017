@@ -31,7 +31,7 @@ ioc.create('productService')
             });
     })
     .catch(err => {
-        log.error(err);
+        log.error(err.toString());
     });
 
 
