@@ -2,3 +2,4 @@ node_modules/
 .idea/
 features
 tmp/
+output.txt
