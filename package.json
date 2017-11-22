@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node index.js",
     "test": "mocha --reporter=spec --recursive",
+    "test:coverage": "istanbul cover _mocha -- --reporter=dot --recursive",
     "linter": "eslint ."
   },
   "repository": {
