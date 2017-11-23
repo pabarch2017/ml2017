@@ -4,9 +4,9 @@
   "description": "Ejercicio práctico para ML",
   "main": "index.js",
   "scripts": {
-    "start": "node ./src/index.js",
+    "start": "node index.js",
     "test": "mocha --reporter=spec --recursive  test/unit",
-    "test:coverage": "istanbul cover _mocha -- --reporter=dot --recursive test/unit",
+    "test:coverage": "istanbul cover --include-all-sources --root src _mocha -- --reporter=dot --recursive test/unit",
     "linter": "eslint index.js ./src ./test ./config"
   },
   "repository": {
