@@ -44,17 +44,20 @@ class HttpCache {
     }
 
     set(resource, options, response) {
-        const key = this.generateKey(resource, options);
-        const data = {};
+        return new Promise((resolve, reject) => {
+            const key = this.generateKey(resource, options);
+            const data = {};
 
-        data.body = response.body;
-        data.headers = response.headers;
-        data.createdAt = moment.now();
-        data.durations = this.extractDurationsFromCacheControl(response.headers['cache-control']) || {};
+            data.body = response.body;
+            data.headers = response.headers;
+            data.createdAt = moment.now();
+            data.durations = this.extractDurationsFromCacheControl(response.headers['cache-control']) || {};
 
-        this.cache.set(key, data, err => {
-            if (err) throw err;
-            log.debug('HttpCache: cache set', { resource });
+            this.cache.set(key, data, err => {
+                if (err) return reject(err);
+                log.debug('HttpCache: cache set', { resource });
+                resolve();
+            });
         });
     }
 
