@@ -25,7 +25,7 @@ $ docker run -ti --rm ejpabarch cat output.txt
 - ESLint (npm run linter).
 - Inversion of control container.
 - Pruebas unitarias (mocha, chai, chai-as-promised, sinon).
-- Code coverage.
+- Code coverage (npm run test:cover).
 - Uso de Promises.
 - Módulo cache: Persistencia mediante archivos por simplicidad (soporta MongoDB).
 - Nivel debug logging.
