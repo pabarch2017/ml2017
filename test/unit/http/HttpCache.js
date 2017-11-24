@@ -1,10 +1,15 @@
-/* global describe, it, beforeEach */
+/* global describe, it, before, beforeEach */
 'use strict';
 
-const should = require('chai').should();
+const chai = require('chai');
+const chaiPromised = require('chai-as-promised');
+const sinon = require('sinon');
+const moment = require('moment');
+const should = chai.should();
 
 const HttpCache = require('../../../src/http/HttpCache');
-const moment = require('moment');
+
+chai.use(chaiPromised);
 
 describe('HttpCache', () => {
     describe('#generateKey()', () => {
@@ -94,6 +99,93 @@ describe('HttpCache', () => {
     });
 
     describe('#set()', () => {
+        let cache = null;
+        let httpCache = null;
 
+        before(() => {
+            sinon.stub(require('moment'), 'now').returns(1000);
+        });
+
+        beforeEach(() => {
+            cache = {};
+            cache.set = sinon.stub();
+            httpCache = new HttpCache(cache);
+            sinon.stub(httpCache, 'generateKey');
+            sinon.stub(httpCache, 'extractDurationsFromCacheControl');
+        });
+
+        it('should reject if an errors occurs setting the cache', () => {
+            cache.set.callsArgWith(2, new Error());
+
+            return httpCache.set('/r1', {}, {}).should.be.rejected;
+        });
+
+        it('should successfully set data into the cache', () => {
+            const resource = '/r1';
+            const options = { attributes: 'val1' };
+            const response = {
+                body: 'text',
+                headers: {
+                    'cache-control': 'public, max-age: 3600'
+                }
+            };
+
+            httpCache.generateKey.withArgs(resource, options).returns('key1');
+            httpCache.extractDurationsFromCacheControl.withArgs(response.headers['cache-control']).returns({ maxAge: 3600 });
+
+            cache.set.withArgs('key1', {
+                body: response.body,
+                headers: response.headers,
+                createdAt: 1000,
+                durations: { maxAge: 3600 }
+            }).callsArgWith(2, undefined);
+
+            return httpCache.set(resource, options, response).should.eventually.deep.equal(undefined);
+        });
+    });
+
+    describe('#get', () => {
+        let cache = null;
+        let httpCache = null;
+
+        beforeEach(() => {
+            cache = {};
+            cache.get = sinon.stub();
+            httpCache = new HttpCache(cache);
+            sinon.stub(httpCache, 'generateKey');
+            sinon.stub(httpCache, 'calculateFlags');
+        });
+
+        it('should reject if an errors occurs getting cached data', () => {
+            cache.get.callsArgWith(2, new Error());
+
+            return httpCache.get('/r1', {}).should.be.rejected;
+        });
+
+        it('should return null from cache', () => {
+            const resource = '/r1';
+            const options = { option: 1 };
+
+            httpCache.generateKey.withArgs(resource, options).returns('key1');
+
+            cache.get.withArgs('key1')
+                .callsArgWith(1, undefined, null);
+
+            return httpCache.get(resource, options).should.eventually.equal(null);
+        });
+
+        it('should return cached data', () => {
+            const resource = '/r1';
+            const options = { option: 1 };
+            const data = { data: 2 };
+
+            httpCache.generateKey.withArgs(resource, options).returns('key1');
+            httpCache.calculateFlags.withArgs(data).returns({ valid: true });
+
+            cache.get.withArgs('key1')
+                .callsArgWith(1, undefined, data);
+
+            return httpCache.get(resource, options).should.eventually.deep.equal({ data: 2, flags: { valid: true }});
+        });
     });
 });
