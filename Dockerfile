@@ -1,5 +1,7 @@
 FROM node:6.12.0
 
+VOLUME /app/output
+
 WORKDIR /app
 
 ADD . .

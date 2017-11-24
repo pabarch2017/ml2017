@@ -4,7 +4,7 @@ const ioc = require('./ioc');
 const fs = require('fs');
 const log = require('winston');
 
-const FILE = './output.txt';
+const FILE = './output/output.txt';
 const productId = process.argv[2] || 'MLA620354952';
 
 ioc.create('productService')

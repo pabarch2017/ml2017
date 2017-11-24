@@ -7,17 +7,22 @@
 
 #### NPM
 
-```bash
+````bash
 $ npm start <Id producto>
-```
+````
 
 #### Docker
 
 ````bash
-$ docker build --tag="ejpabarch" . 
-$ docker run -ti ejpabarch npm start <Id producto>
-$ docker run -ti --rm ejpabarch cat output.txt
+$ docker build --tag="ep_pabarch" . 
+$ docker run -ti --rm -v $PWD/output:/app/output ep_pabarch npm start <Id producto>
 ````
+
+Leer output:
+```bash
+$ cat ./output/output.txt
+```
+
 
 ## Características generales
 
