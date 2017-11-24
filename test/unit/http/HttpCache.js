@@ -168,8 +168,7 @@ describe('HttpCache', () => {
 
             httpCache.generateKey.withArgs(resource, options).returns('key1');
 
-            cache.get.withArgs('key1')
-                .callsArgWith(1, undefined, null);
+            cache.get.withArgs('key1').callsArgWith(1, undefined, null);
 
             return httpCache.get(resource, options).should.eventually.equal(null);
         });
@@ -182,8 +181,7 @@ describe('HttpCache', () => {
             httpCache.generateKey.withArgs(resource, options).returns('key1');
             httpCache.calculateFlags.withArgs(data).returns({ valid: true });
 
-            cache.get.withArgs('key1')
-                .callsArgWith(1, undefined, data);
+            cache.get.withArgs('key1').callsArgWith(1, undefined, data);
 
             return httpCache.get(resource, options).should.eventually.deep.equal({ data: 2, flags: { valid: true }});
         });
